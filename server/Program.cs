@@ -1,4 +1,6 @@
 using DotNetEnv;
+using server.Endpoints.Authentication;
+using server.WeatherForecasts;
 var builder = WebApplication.CreateBuilder(args);
 
 //Variable declaration and definition..
@@ -18,6 +20,7 @@ builder.Services.AddCors(options =>
 });
 var app = builder.Build();
 app.UseCors(MyAllowance);
-app.MapGet("/", () => "Hello World");
+app.AddWeatherForecastEndpoints();
+app.AddAuthEndpoints();
 app.Urls.Add($"http://localhost:{port}");
 app.Run();
