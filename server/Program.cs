@@ -1,5 +1,8 @@
 using DotNetEnv;
+using Microsoft.EntityFrameworkCore;
+using server.Data;
 using server.Endpoints.Authentication;
+using server.Endpoints.Rentals;
 using server.WeatherForecasts;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +21,17 @@ builder.Services.AddCors(options =>
                 .AllowCredentials();
             });
 });
+
+//adding database service
+builder.Services.AddDbContext<DbRentalContext>(options=>
+{
+   options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString")); 
+});
+
 var app = builder.Build();
 app.UseCors(MyAllowance);
 app.AddWeatherForecastEndpoints();
 app.AddAuthEndpoints();
+app.AddVehicleEndpoints();
 app.Urls.Add($"http://localhost:{port}");
 app.Run();

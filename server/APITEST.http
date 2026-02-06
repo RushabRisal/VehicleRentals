@@ -1,0 +1,29 @@
+### Get all vehicles
+GET http://localhost:5000/api/v1/rental/vehicles
+
+### Upload a new vehicle
+POST http://localhost:3000/api/v1/rental/uploadVehicle
+Content-Type: application/json
+
+{
+  "ModelName": "Tesla",
+  "ImgUrl": "https://imgs.search.brave.com/0Ax72WX11eVVMhEFb3oO0_QZVKd_Ex296wSAuB1E0zc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9oaXBz/LmhlYXJzdGFwcHMu/Y29tL2htZy1wcm9k/L2ltYWdlcy9tb2Rl/bC15LTItYWxvbmct/dGhlLXdheS1kZXNr/dG9wLWNuLTY3ODA4/N2FjNTA5ZmIuanBn/P2Nyb3A9MXh3OjF4/aDtjZW50ZXIsdG9w",
+  "Type": "EV",
+  "NumberOfPassenger": 4,
+  "Level": "Luxury",
+  "Category":"Comfort",
+  "Rating":5
+}
+### Upload a new vehicle
+POST http://localhost:3000/api/v1/rental/uploadVehicle
+Content-Type: application/json
+
+{
+  "ModelName": "Jeep Wrangler",
+  "ImgUrl": "https://imgs.search.brave.com/MWmXWvIVKoYs2DiVCUFi5-PyRZ6qZB4oCkwZ3LNNuHo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNDU4/NTg3NzczL3Bob3Rv/L2plZXAtd3Jhbmds/ZXIuanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPS1QdlZaWlRY/R25kZ3hkVkVUb0Nz/VVFXTkQ3UmZzRWhz/bXJUNmloYVdJVXc9",
+  "Type": "Deisel",
+  "NumberOfPassenger": 7,
+  "Level": "Premium",
+  "Category":"Off Road",
+  "Rating":10
+}
