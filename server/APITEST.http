@@ -27,3 +27,40 @@ Content-Type: application/json
   "Category":"Off Road",
   "Rating":10
 }
+### Upload a new vehicle
+POST http://localhost:3000/api/v1/rental/uploadVehicle
+Content-Type: application/json
+
+{
+  "ModelName": "MG",
+  "ImgUrl": "https://www.chasingcars.com.au/reviews/small-suvs/mg-s5-ev-essence-2025-review/",
+  "Type": "EV",
+  "NumberOfPassenger": 5,
+  "Level": "Deluxe",
+  "Category":"Comfort",
+  "Rating":5
+}
+###
+POST http://localhost:3000/api/v1/rental/uploadVehicle
+Content-Type: application/json
+
+{
+  "ModelName": "MG",
+  "ImgUrl": "https://www.chasingcars.com.au/reviews/small-suvs/mg-s5-ev-essence-2025-review/",
+  "Type": "EV",
+  "NumberOfPassenger": 5,
+  "Level": "Deluxe",
+  "Category":"Comfort",
+  "Rating":5
+}
+
+### Get all the vehicle list
+GET http://localhost:3000/api/v1/rental/vehicles
+Content-Type: application/json
+
+### Get vehicle by Id
+GET http://localhost:3000/api/v1/rental/vehicle/4
+Content-Type: application/json
+
+### Delete a vehicle By Id
+POST http://localhost:3000/api/v1/rental/vehicle/delete/4
