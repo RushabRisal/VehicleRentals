@@ -12,4 +12,5 @@ public class VehiclesCatolog
     public string? Level { get;set;}
     public string? Category{get;set;}
     public int Rating{get;set;}
+    public bool IsDelete {get;set;}
 }
