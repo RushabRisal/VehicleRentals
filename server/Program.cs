@@ -5,6 +5,9 @@ using server.Endpoints.Authentication;
 using server.Endpoints.Rentals;
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddOpenApiDocument();
+
 //Variable declaration and definition..
 var MyAllowance = "_MyAllowance";
 Env.Load();
@@ -24,10 +27,18 @@ builder.Services.AddCors(options =>
 //adding database service
 builder.Services.AddDbContext<DbRentalContext>(options=>
 {
-   options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString")); 
-});
+   options.UseMySql(Environment.GetEnvironmentVariable("ConnectionString")
+    ,new MariaDbServerVersion(new Version(12, 1, 2)));
 
+});
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseOpenApi();
+    app.UseSwaggerUi();
+}
+
 app.UseCors(MyAllowance);
 app.AddAuthEndpoints();
 app.AddVehicleEndpoints();

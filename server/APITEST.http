@@ -64,3 +64,6 @@ Content-Type: application/json
 
 ### Delete a vehicle By Id
 POST http://localhost:3000/api/v1/rental/vehicle/delete/4
+
+
+### User signup

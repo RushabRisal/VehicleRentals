@@ -1,0 +1,24 @@
+using System.ComponentModel.DataAnnotations;
+namespace server.Models.DTOs;
+
+public class UserDto
+{
+    [Required]
+    public required string FirstName {get;set;}
+    public string? MiddleName {get;set;}
+    [Required]
+    public required string LastName {get;set;}
+    [Required]
+    public required string Username {get;set;}
+    [Required]
+    public required string Email{get;set;}
+    [Required]
+    public required string Password{get;set;} 
+}
+public class RegisterUserDto
+{
+    public string? Username {get;set;}
+    public string? Email {get;set;}
+    [Required]
+    public required string Password{get;set;}
+}
