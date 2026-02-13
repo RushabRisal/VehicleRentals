@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 namespace server.Models.DTOs;
-
 public class UserDto
 {
     [Required]
@@ -19,6 +18,9 @@ public class RegisterUserDto
 {
     public string? Username {get;set;}
     public string? Email {get;set;}
-    [Required]
+}
+public class LoginDto
+{
+    public required string Email {get;set;}
     public required string Password{get;set;}
 }

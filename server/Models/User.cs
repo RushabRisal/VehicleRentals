@@ -19,5 +19,6 @@ public class User
     public string? Role{get;set;} = "User"; 
     [Required]
     public required string Password{get;set;} 
-    
+    [Required]
+    public required string Salt{get;set;}
 }
