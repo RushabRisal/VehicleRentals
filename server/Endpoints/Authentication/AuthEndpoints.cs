@@ -7,6 +7,7 @@ using server.Models.DTOs;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
+using server.Services;
 namespace server.Endpoints.Authentication;
 
 public static class AuthEndpoints
@@ -60,8 +61,9 @@ public static class AuthEndpoints
             return TypedResults.NotFound();
         }
     }
-    public static async Task<Results<Ok<RegisterUserDto>,UnauthorizedHttpResult,ProblemHttpResult>> Login(DbRentalContext _context,[FromBody] LoginDto usersCredit)
+    public static async Task<Results<Ok<UserValidResponse>,UnauthorizedHttpResult,ProblemHttpResult>> Login(DbRentalContext _context,IConfiguration config,[FromBody] LoginDto usersCredit)
     {
+        JwtService _generateJwt = new (config);
         try{
             var dbUser= await _context.Users
                 .Where(a => a.Email == usersCredit.Email)
@@ -74,18 +76,26 @@ public static class AuthEndpoints
                 var newHashedPassword = HashGenerator(usersCredit.Password,salt);
                 if (newHashedPassword.Equals(dbUser.Password))
                 {
-                    var user = new RegisterUserDto()
+                    var user = new UserValidRequest()
                     {
                         Username = dbUser.Username,
                         Email = dbUser.Email 
                     };
-                    return TypedResults.Ok(user);
+                    var accessToken = _generateJwt.GenerateAccessToken(user);
+                    var respone = new UserValidResponse()
+                    {
+                      Username = user.Username,
+                      AccessToken = accessToken  
+                    };
+                    return TypedResults.Ok(respone);
                 }
+                
                 return TypedResults.Unauthorized();
             }  
         }catch(Exception error)
         {
-            Console.WriteLine(error.Message);
+            
+            Console.WriteLine("here"+error.Message);
             return TypedResults.Problem("");
         }
     }

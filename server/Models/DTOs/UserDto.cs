@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Azure.Identity;
 namespace server.Models.DTOs;
 public class UserDto
 {
@@ -23,4 +24,15 @@ public class LoginDto
 {
     public required string Email {get;set;}
     public required string Password{get;set;}
+}
+
+public class UserValidRequest
+{
+    public required string Username {get;set;}
+    public required string Email {get;set;}
+}
+public class UserValidResponse
+{
+    public string? Username{get;set;}
+    public string? AccessToken{get;set;}
 }

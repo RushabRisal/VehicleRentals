@@ -13,7 +13,7 @@ public static class VehicleEndpoint
     public static void AddVehicleEndpoints(this WebApplication app)
     {
         var vehicle = app.MapGroup("/api/v1/rental");
-        vehicle.MapGet("/vehicles",GetVehiclesList);
+        vehicle.MapGet("/vehicles",GetVehiclesList).RequireAuthorization();
         vehicle.MapPost("/uploadVehicle",UploadNewVehicle);
         vehicle.MapGet("/vehicle/{Id}",GetVehicleById);
         vehicle.MapPost("/vehicle/delete/{Id}",DeleteById);
